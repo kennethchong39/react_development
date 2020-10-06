@@ -8,10 +8,10 @@ class FullPost extends Component {
         loadedPost: null
     }
 
-    //will get infinite loop so prevent it by adding 2nd for loop
+    //will get infinite loop so prevent it by adding 2nd for loop (by making sure that the post is null or the post is not the same id then componentDidUpdate())
     componentDidUpdate() {
         if (this.props.id) {
-            if(!this.state.loadedPost || this.state.loadedPost.id !== this.props.id) {
+            if (!this.state.loadedPost || this.state.loadedPost.id !== this.props.id) {
                 axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
                     .then(response => {
                         this.setState({ loadedPost: response.data });
@@ -27,10 +27,10 @@ class FullPost extends Component {
             });
     }
 
-    render () {
-        let post = <p style={{textAlign: 'center'}}>Please select a Post!</p>;
+    render() {
+        let post = <p style={{ textAlign: 'center' }}>Please select a Post!</p>;
         if (this.props.id) {
-            post = <p style={{ textAlign: 'center' }}>Please select a Post!</p>;
+            post = <p style={{ textAlign: 'center' }}>Loading...!</p>;
         }
         if (this.state.loadedPost) {
             post = (

@@ -7,11 +7,11 @@ import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 class App extends Component {
   state = {
     persons: [
-      { id: 1, name : 'Max', age: 28 },
-      { id: 2, name : 'Manu', age: 29 },
-      { id: 3, name : 'Stephanie', age: 20},
+      { id: 1, name: 'Max', age: 28 },
+      { id: 2, name: 'Manu', age: 29 },
+      { id: 3, name: 'Stephanie', age: 20 },
     ],
-    showPerson : false
+    showPerson: false
   }
 
   //normal function
@@ -30,14 +30,14 @@ class App extends Component {
 
     //get the person itself
     // why we do this? 
-    const person = { ...this.state.persons[personIndex] } 
+    const person = { ...this.state.persons[personIndex] }
 
     person.name = event.target.value;
 
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState({persons : persons});
+    this.setState({ persons: persons });
   }
 
   deletePersonHandler = (personIndex) => {
@@ -47,36 +47,36 @@ class App extends Component {
     // a copy of the array
     const persons = [...this.state.persons];
     // remove one element from the element
-    persons.splice(personIndex, 1); 
-    this.setState({persons : persons});
+    persons.splice(personIndex, 1);
+    this.setState({ persons: persons });
   }
 
   toggleShowPerson = () => {
-    this.setState({showPerson : !this.state.showPerson});
+    this.setState({ showPerson: !this.state.showPerson });
   }
 
-  
+
   render() {
     const style = {
       backgroundColor: 'white',
     }
 
     let person = null;
-    if(this.state.showPerson) {
+    if (this.state.showPerson) {
       person = (
         <div>
-        {/* execute every element in the array */}
+          {/* execute every element in the array */}
           {this.state.persons.map((person, index) => {
-              return (
-                <Person 
-                  key={person.id}
-                  name={person.name}
-                  age={person.age}
-                  click={() => this.deletePersonHandler(index)}
-                  changed={(event) => this.nameChangedHandler(event, person.id)}
-                /> 
-              )
-            })
+            return (
+              <Person
+                key={person.id}
+                name={person.name}
+                age={person.age}
+                click={() => this.deletePersonHandler(index)}
+                changed={(event) => this.nameChangedHandler(event, person.id)}
+              />
+            )
+          })
           }
         </div>
       )
@@ -99,7 +99,7 @@ export default App;
           age={this.state.persons[0].age}
           click={this.switchNameHandler}
         /> */
-/* <Person name={personState.persons[1].name} age={personState.persons[1].age}> HELLO </Person> */ 
+/* <Person name={personState.persons[1].name} age={personState.persons[1].age}> HELLO </Person> */
     // return (
     //   <div className="App">
     //     <h1>Hi, I am react app!</h1>
